@@ -1,0 +1,10 @@
+**Title:** Transfer-on-fee tokens will cause less amount than mentioned amount
+
+**Impact:-**A transfer-on-fee token or a deflationary causing the received amount to be less than the accounted amount. For instance, a deflationary tokens might charge a certain fee for every safeTransfer() or safeTransferFrom(). It leads to received less amount than mentioned amount
+
+*Summary:-**If LPTokens are transfer-on fee tokens then if User(A) try to deposit to MasterChef contract calls deposit() with 100 token amount then due to transfer-on tokens it will deduct the fee on each safeTransfer and safeTransfrom so MasterChef contract receives 99 tokens but emit logs as receives 100 token only .
+
+**Recommendation**:-try to maintain before and after balance :-\n\nuint beforebalance = address(this).balance;\npool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);\nuint afterBalance = address(this).balance;\nuint DepositedAmount = afterBalance - beforeBalance ; emit(msg.sender, _pid, DepositedAmount)
+
+I had submitted through hats.finance after resolved this issue from person name randy ranch did give reward according to bug bounty program. Provide bounty for my work 
+telegramId = @Pavan_kv
